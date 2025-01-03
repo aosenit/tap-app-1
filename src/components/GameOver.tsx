@@ -7,62 +7,21 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { useAuthQuery } from "@/hooks/useAuthQuery";
-import {
-  extractUsername,
-  getUserLeaderboardDetail,
-  saveScore,
-} from "@/lib/helper";
+import { extractUsername, saveScore } from "@/lib/helper";
 import { useEffect, useState } from "react";
-import Confetti from "react-confetti";
-import { useWindowSize } from "react-use";
-import clapSound from "@/assets/clap.mp3";
 
 function GameOver({ score, resetGame, isOpen, onClose }: any) {
-  const { width, height } = useWindowSize();
   const { data: user } = useAuthQuery();
   const [loading, setLoading] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
-  const [sound, setSound] = useState<HTMLAudioElement | null>(null);
+
   const name = user?.email ? extractUsername(user?.email) : "";
-
-  const playSound = () => {
-    const tapSound = new Audio(clapSound);
-    setSound(tapSound);
-    tapSound.play();
-  };
-
-  const stopSound = () => {
-    if (sound) {
-      sound.pause();
-      sound.currentTime = 0;
-    }
-  };
-
-  const player = () => {
-    setShowConfetti(true);
-    playSound();
-    setTimeout(() => {
-      setShowConfetti(false);
-      stopSound();
-    }, 5000);
-  };
 
   const handleSaveScore = async () => {
     setLoading(true);
     try {
       await saveScore(name, score);
-      const res = await getUserLeaderboardDetail(name);
-      if (!res.success) return;
-
-      if (!res?.data?.score || res?.data?.score === 0) {
-        player();
-      }
-
-      if (res?.data?.score < score) {
-        player();
-      }
     } catch (error) {
-      console.log(error);
+      console.error("Error saving score:", error);
     } finally {
       setLoading(false);
     }
@@ -96,7 +55,6 @@ function GameOver({ score, resetGame, isOpen, onClose }: any) {
             {loading ? "Updating Score..." : "Play Again"}
           </Button>
         </div>
-        {showConfetti && <Confetti width={width} height={height} />}
       </DialogContent>
     </Dialog>
   );

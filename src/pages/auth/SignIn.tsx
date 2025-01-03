@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { signIn as firebaseSignIn } from "@/lib/helper";
+import { cleanFirebaseError, signIn as firebaseSignIn } from "@/lib/helper";
 import { useMutation } from "@tanstack/react-query";
 import { SignInUser } from "@/type/User";
 import { Link, useNavigate } from "react-router-dom";
@@ -24,7 +24,7 @@ const SignIn = () => {
     },
     onError: (error) => {
       console.log(error?.message);
-      setError("Wrong login credentials");
+      setError(cleanFirebaseError(error?.message));
     },
   });
 

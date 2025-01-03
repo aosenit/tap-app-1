@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { signUp as signUpFirebase } from "@/lib/helper";
+import { cleanFirebaseError, signUp as signUpFirebase } from "@/lib/helper";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { SignUpUser } from "@/type/User";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ export default function SignUp() {
       return response?.user;
     },
     onError: (error) => {
-      console.log(error?.message);
+      setError(cleanFirebaseError(error?.message));
     },
   });
 
@@ -41,9 +42,22 @@ export default function SignUp() {
         onSubmit={handleSignUp}
         className="w-full max-w-md bg-white p-6 rounded-lg shadow-md"
       >
-        <h1 className="text-2xl font-bold text-center text-gray-700">
-          Sign Up
-        </h1>
+        {error.length > 0 && (
+          <div className="shadow  p-5 mb-4 text-center bg-red-400 text-white rounded-lg">
+            <h2 className="text-lg">{error}</h2>
+          </div>
+        )}
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold text-center text-gray-700">
+            Sign Up
+          </h1>
+
+          <Link to="/leaderboard">
+            <Button className="bg-gradient-to-r from-blue-400 to-green-500 hover:from-blue-500 hover:to-green-600 text-white px-6 py-2 rounded-full w-full">
+              Agba Tappers
+            </Button>
+          </Link>
+        </div>
         <div className="mt-4">
           <label className="block text-sm font-medium text-gray-600">
             Email

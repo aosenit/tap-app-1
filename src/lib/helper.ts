@@ -112,3 +112,11 @@ export function extractUsername(email: string) {
   const atIndex = email.indexOf("@");
   return email?.substring(0, atIndex) || email;
 }
+
+export function cleanFirebaseError(errorMessage: string): string {
+  const prefix = "Firebase: ";
+  if (errorMessage.startsWith(prefix)) {
+    return errorMessage.slice(prefix.length);
+  }
+  return errorMessage;
+}

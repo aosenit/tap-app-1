@@ -27,7 +27,7 @@ export const Logout = () => {
   return (
     <Button
       onClick={logoutUser}
-      className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-6 py-2 rounded-full"
+      className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-6 py-2 rounded-full w-full"
     >
       {loading ? "Logging out" : "Log Out"}
     </Button>
