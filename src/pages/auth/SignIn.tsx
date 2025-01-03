@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { signIn as firebaseSignIn } from "@/lib/helper";
 import { useMutation } from "@tanstack/react-query";
 import { SignInUser } from "@/type/User";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -44,9 +44,17 @@ const SignIn = () => {
             <h2 className="text-lg">{error}</h2>
           </div>
         )}
-        <h1 className="text-2xl font-bold text-center text-gray-700">
-          Sign In
-        </h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold text-center text-gray-700">
+            Sign In
+          </h1>
+
+          <Link to="/leaderboard">
+            <Button className="bg-gradient-to-r from-blue-400 to-green-500 hover:from-blue-500 hover:to-green-600 text-white px-6 py-2 rounded-full w-full">
+              Agba Tappers
+            </Button>
+          </Link>
+        </div>
         <div className="mt-4">
           <label className="block text-sm font-medium text-gray-600">
             Email

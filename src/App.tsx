@@ -17,14 +17,7 @@ const AppRoutes = () => (
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/leaderboard"
-        element={
-          <ProtectedRoute>
-            <Leaderboard />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/leaderboard" element={<Leaderboard />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
     </Routes>
