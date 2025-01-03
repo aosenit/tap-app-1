@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Timer, History } from "lucide-react";
 import tapSoundMp3 from "@/assets/tap.mp3";
 
-const GameActive = ({ score, timeLeft, handleTap, cancelGame }) => {
+const GameActive = ({ score, timeLeft, handleTap, cancelGame }: any) => {
   const playSound = () => {
     const tapSound = new Audio(tapSoundMp3);
     tapSound.play();

@@ -7,7 +7,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-const GameOver = ({ playerName, score, resetGame, isOpen, onClose }) => (
+const GameOver = ({ playerName, score, resetGame, isOpen, onClose }: any) => (
   <Dialog open={isOpen} onOpenChange={onClose}>
     <DialogContent>
       <DialogHeader>

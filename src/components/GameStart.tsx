@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { User } from "lucide-react";
 import { useState } from "react";
 
-export const GameStart = ({ playerName, setPlayerName, startGame }) => {
+export const GameStart = ({ playerName, setPlayerName, startGame }: any) => {
   const [name, setName] = useState("");
 
   const handlePlayerName = () => {
