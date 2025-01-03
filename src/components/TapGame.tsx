@@ -6,8 +6,7 @@ import GameOver from "./GameOver";
 import { GameStart } from "./GameStart";
 
 import { useAuthQuery } from "@/hooks/useAuthQuery";
-import { Button } from "./ui/button";
-import { useNavigate } from "react-router-dom";
+
 import MainLayout from "./MainLayout";
 import Loader from "./Loader";
 import { extractUsername, getUserLeaderboardDetail } from "@/lib/helper";
@@ -19,7 +18,7 @@ import { Logout } from "./Logout";
 const TapGame = () => {
   const { isLoading } = useAuthQuery();
   const { data: user } = useAuthQuery();
-  const navigate = useNavigate();
+
   const [score, setScore] = useState(0);
   const [gameActive, setGameActive] = useState(false);
   const [timeLeft, setTimeLeft] = useState(30);

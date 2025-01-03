@@ -31,7 +31,7 @@ const GameActive = ({ score, timeLeft, handleTap, cancelGame }: any) => {
       </Button>
       <Button
         onClick={cancelGame}
-        className="bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-600 text-white px-6 py-2 rounded-full"
+        className="bg-gradient-to-r from-purple-400 to-red-500 hover:from-red-500 hover:to-red-600 text-white px-6 py-2 rounded-full"
       >
         Cancel Game
       </Button>
