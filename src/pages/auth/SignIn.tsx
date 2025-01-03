@@ -14,7 +14,10 @@ const SignIn = () => {
     mutationFn: async ({ email, password }: SignInUser) => {
       const response = await firebaseSignIn(email, password);
       console.log(response);
-      navigate("/");
+      if (response?.user) {
+        navigate("/");
+      }
+
       return response?.user;
     },
     onError: (error) => {

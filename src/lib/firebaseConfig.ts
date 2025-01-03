@@ -4,13 +4,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDlkp1TgJwX1qDP7bZ5WR-hIhKiXd5Je0c",
-  authDomain: "agba-tapper.firebaseapp.com",
-  projectId: "agba-tapper",
-  storageBucket: "agba-tapper.firebasestorage.app",
-  messagingSenderId: "545878084768",
-  appId: "1:545878084768:web:6959124fe266d457d88dc5",
-  measurementId: "G-SDYE1Z0NFW",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase

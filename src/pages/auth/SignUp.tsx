@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { signUp } from "@/lib/helper";
+import { signUp as signUpFirebase } from "@/lib/helper";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { SignUpUser } from "@/type/User";
 import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+export default function SignUp() {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +16,7 @@ const SignUp = () => {
 
   const mutation = useMutation({
     mutationFn: async ({ email, password }: SignUpUser) => {
-      const response = await signUp(email, password);
+      const response = await signUpFirebase(email, password);
       console.log(response);
       navigate("/");
       return response?.user;
@@ -35,7 +35,6 @@ const SignUp = () => {
     // Call your Firebase sign-up method here
     mutation.mutate({ email, password });
   };
-
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <form
@@ -86,9 +85,10 @@ const SignUp = () => {
         </div>
         <Button
           type="submit"
+          disabled={mutation.isPending}
           className="w-full mt-6 bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white px-4 py-2 rounded-lg"
         >
-          Sign Up
+          {mutation.isPending ? "Signing up..." : "Sign Up"}
         </Button>
         <p className="text-sm text-center text-gray-500 mt-4">
           Already have an account?{" "}
@@ -99,6 +99,4 @@ const SignUp = () => {
       </form>
     </div>
   );
-};
-
-export default SignUp;
+}
