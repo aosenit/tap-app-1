@@ -108,11 +108,8 @@ export const trackEvent = (eventName: string, params: any) => {
 export function extractUsername(email: string) {
   console.log(email);
   if (typeof email !== "string") {
-    throw new Error("Invalid email format");
+    return email;
   }
   const atIndex = email.indexOf("@");
-  if (atIndex === -1) {
-    throw new Error("Invalid email: missing '@' symbol");
-  }
-  return email?.substring(0, atIndex);
+  return email?.substring(0, atIndex) || email;
 }
