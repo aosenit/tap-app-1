@@ -16,11 +16,12 @@ const TapGame = () => {
   const [playerName, setPlayerName] = useState("");
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [highScores, setHighScores] = useState([
-    { name: "trazdev", score: 180, rank: 1 },
-    { name: "Sam", score: 143, rank: 2 },
-    { name: "Jordan", score: 138, rank: 3 },
-    { name: "Taylor", score: 132, rank: 4 },
-    { name: "Morgan", score: 129, rank: 5 },
+    { name: "trazdev", score: 380, rank: 1 },
+    { name: "Oluwaseun", score: 325, rank: 2 },
+    { name: "MaRt", score: 302, rank: 3 },
+
+    { name: "Oohhhhhhhjjj", score: 217, rank: 4 },
+    { name: "Ohhjay", score: 212, rank: 5 },
   ]);
 
   const resetGame = () => {
