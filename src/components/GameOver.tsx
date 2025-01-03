@@ -38,6 +38,15 @@ function GameOver({ score, resetGame, isOpen, onClose }: any) {
     }
   };
 
+  const player = () => {
+    setShowConfetti(true);
+    playSound();
+    setTimeout(() => {
+      setShowConfetti(false);
+      stopSound();
+    }, 5000);
+  };
+
   const handleSaveScore = async () => {
     setLoading(true);
     try {
@@ -45,13 +54,12 @@ function GameOver({ score, resetGame, isOpen, onClose }: any) {
       const res = await getUserLeaderboardDetail(name);
       if (!res.success) return;
 
+      if (!res?.data?.score || res?.data?.score === 0) {
+        player();
+      }
+
       if (res?.data?.score < score) {
-        setShowConfetti(true);
-        playSound();
-        setTimeout(() => {
-          setShowConfetti(false);
-          stopSound();
-        }, 3000);
+        player();
       }
     } catch (error) {
       console.log(error);

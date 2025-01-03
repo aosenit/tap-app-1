@@ -35,7 +35,7 @@ export const logoutUser = async () => {
   const auth = getAuth();
   try {
     await signOut(auth);
-    console.log("User successfully logged out");
+
     redirect("/signin");
   } catch (error) {
     if (error instanceof Error) {
@@ -106,7 +106,6 @@ export const trackEvent = (eventName: string, params: any) => {
 };
 
 export function extractUsername(email: string) {
-  console.log(email);
   if (typeof email !== "string") {
     return email;
   }

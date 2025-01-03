@@ -7,13 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: async ({ email, password }: SignInUser) => {
       const response = await firebaseSignIn(email, password);
-      console.log(response);
+
       if (response?.user) {
         navigate("/");
       }
@@ -22,6 +24,7 @@ const SignIn = () => {
     },
     onError: (error) => {
       console.log(error?.message);
+      setError("Wrong login credentials");
     },
   });
 
@@ -36,6 +39,11 @@ const SignIn = () => {
         onSubmit={handleSignIn}
         className="w-full max-w-md bg-white p-6 rounded-lg shadow-md"
       >
+        {error.length > 0 && (
+          <div className="shadow  p-5 mb-4 text-center bg-red-400 text-white rounded-lg">
+            <h2 className="text-lg">{error}</h2>
+          </div>
+        )}
         <h1 className="text-2xl font-bold text-center text-gray-700">
           Sign In
         </h1>

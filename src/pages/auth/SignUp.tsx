@@ -17,7 +17,7 @@ export default function SignUp() {
   const mutation = useMutation({
     mutationFn: async ({ email, password }: SignUpUser) => {
       const response = await signUpFirebase(email, password);
-      console.log(response);
+
       navigate("/");
       return response?.user;
     },
