@@ -23,7 +23,7 @@ function GameOver({ score, resetGame, isOpen, onClose }: any) {
   const [loading, setLoading] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [sound, setSound] = useState<HTMLAudioElement | null>(null);
-  const name = user?.email ? extractUsername(user.email) : "";
+  const name = user?.email ? extractUsername(user?.email) : "";
 
   const playSound = () => {
     const tapSound = new Audio(clapSound);
