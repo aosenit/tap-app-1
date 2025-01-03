@@ -15,7 +15,11 @@ export const Logout = () => {
       navigate("/signin");
       console.log("User successfully logged out");
     } catch (error) {
-      console.error("Error logging out:", error.message);
+      if (error instanceof Error) {
+        console.error("Error logging out:", error.message);
+      } else {
+        console.error("An unknown error occurred during logout.");
+      }
     } finally {
       setLoading(false);
     }

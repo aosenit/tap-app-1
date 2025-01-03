@@ -6,7 +6,6 @@ import {
 } from "firebase/auth";
 import { analytics, auth, db } from "./firebaseConfig";
 import {
-  addDoc,
   collection,
   doc,
   getDoc,
@@ -16,7 +15,7 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { User } from "@/type/User";
+
 import { logEvent } from "firebase/analytics";
 import { redirect } from "react-router-dom";
 
@@ -39,7 +38,11 @@ export const logoutUser = async () => {
     console.log("User successfully logged out");
     redirect("/signin");
   } catch (error) {
-    console.error("Error logging out:", error?.message);
+    if (error instanceof Error) {
+      console.error("Error logging out:", error.message);
+    } else {
+      console.error("An unknown error occurred during logout.");
+    }
   }
 };
 

@@ -6,6 +6,7 @@ import { Logout } from "./Logout";
 
 export const GameStart = ({ startGame }: any) => {
   const { data: user, isLoading } = useAuthQuery();
+  const name = user?.email ? extractUsername(user.email) : "";
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -17,7 +18,7 @@ export const GameStart = ({ startGame }: any) => {
         <h3 className="">
           <p>
             <span className="text-lg text-purple-600 uppercase font-bold">
-              {extractUsername(user?.email)} !
+              {extractUsername(name)}
             </span>
           </p>
         </h3>

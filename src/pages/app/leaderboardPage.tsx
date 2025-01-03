@@ -1,8 +1,5 @@
-import Leaderboard from "@/components/LeaderBoard";\
+import Leaderboard from "@/components/LeaderBoard";
 
 export const leaderboardPage = () => {
-  return (
-    
-      <Leaderboard />
-  );
+  return <Leaderboard />;
 };
